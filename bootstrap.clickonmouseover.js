@@ -13,17 +13,18 @@
 
 		var settings = {
 			color : false,
-			time  : 1000
+			speed  : 1000
 		};
 
 		if(options) {
 			$.extend(settings, options);
 
-			if (settings.time <= 0)
-				settings.time = 1;
+			if (settings.speed <= 0)
+				settings.speed = 1;
 		}
 
 		return this.each(function() {
+			console.log(this);
 			var $this = $(this);
 			var $button = $this;
 			var color2 = $button.css('backgroundColor');
@@ -38,7 +39,7 @@
 
 				var percent = -0.3;
 				var f=rgb.split(","),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=parseInt(f[0].slice(4)),G=parseInt(f[1]),B=parseInt(f[2]);
-			    var blended = "rgb("+(Math.round((t-R)*p)+R)+","+(Math.round((t-G)*p)+G)+","+(Math.round((t-B)*p)+B)+")";
+			    var blended = "rgba("+(Math.round((t-R)*p)+R)+","+(Math.round((t-G)*p)+G)+","+(Math.round((t-B)*p)+B)+",1)";
 			} else
 				var blended = settings.color;
 
@@ -51,20 +52,32 @@
 				$button.data('animation_interval', setInterval(function(){
 					var current = +new Date();
 
-					percent = Math.round( ((current-start)/settings.time)*100 );
+					percent = Math.round( ((current-start)/settings.speed)*100 );
 					if (percent > 100)
 						percent = 100;
 
 					var percent_plusone = percent + 1;
 
-					$button.css({
-						background: "-webkit-gradient(linear, left top, right top, color-stop(0%,"+blended+"), color-stop("+percent+"%,"+blended+"), color-stop("+percent_plusone+"%,"+color2+"));"}).css({
-						background: "-moz-linear-gradient(left, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"});
 
-					if (percent == 100)
+					$button.css({
+						background: "-webkit-gradient(linear, left top, right top, color-stop(0%,"+blended+"), color-stop("+percent+"%,"+blended+"), color-stop("+percent_plusone+"%,"+color2+"));"
+					}).css({
+						background: "-webkit-linear-gradient(left, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"
+					}).css({
+						background: "-moz-linear-gradient(left, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"
+					}).css({
+						background: "-o-linear-gradient(left, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"
+					}).css({
+						background: "-ms-linear-gradient(left, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"
+					}).css({
+						background: "linear-gradient(to right, "+blended+" 0%, "+blended+" "+percent+"%, "+color2+" "+percent_plusone+"%)"
+					});;
+
+				if (percent == 100)
 					{
 						clearInterval( $button.data('animation_interval') );
-						$button.click();
+						$button[0].click();
+						console.log($button);
 						return;						
 					}
 

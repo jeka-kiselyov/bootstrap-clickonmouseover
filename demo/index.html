@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jQuery IMGRights demo</title>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="../bootstrap.clickonmouseover.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script type="text/javascript">
+    $(function(){
+      $("button,input,a").clickonmouseover();
+      $("button,input,a").click(function(){
+        console.log(this); console.log('clicked');
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <div class="bs-example">
+    <button type="button" class="btn btn-default">Default</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-success">Success</button>
+    <button type="button" class="btn btn-info">Info</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-link">Link</button>
+  </div>
+
+  <div class="bs-example">
+    <p>
+      <button type="button" class="btn btn-primary btn-lg">Large button</button>
+      <button type="button" class="btn btn-default btn-lg">Large button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary">Default button</button>
+      <button type="button" class="btn btn-default">Default button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-sm">Small button</button>
+      <button type="button" class="btn btn-default btn-sm">Small button</button>
+    </p>
+    <p>
+      <button type="button" class="btn btn-primary btn-xs">Extra small button</button>
+      <button type="button" class="btn btn-default btn-xs">Extra small button</button>
+    </p>
+  </div>
+
+  <form class="bs-example">
+    <a class="btn btn-default" href="#" role="button">Link</a>
+    <button class="btn btn-default" type="submit">Button</button>
+    <input class="btn btn-default" value="Input" type="button">
+    <input class="btn btn-default" value="Submit" type="submit">
+  </form>
+
+
+</body>
+</html>

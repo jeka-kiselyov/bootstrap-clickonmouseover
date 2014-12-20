@@ -24,7 +24,6 @@
 		}
 
 		return this.each(function() {
-			console.log(this);
 			var $this = $(this);
 			var $button = $this;
 			var color2 = $button.css('backgroundColor');
@@ -77,7 +76,6 @@
 					{
 						clearInterval( $button.data('animation_interval') );
 						$button[0].click();
-						console.log($button);
 						return;						
 					}
 
